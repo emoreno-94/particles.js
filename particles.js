@@ -10,6 +10,7 @@
 var pJS = function(tag_id, params){
 
   var canvas_el = document.querySelector('#'+tag_id+' > .particles-js-canvas-el');
+  const offsetTopTag = document.getElementById(tag_id).offsetTop;
 
   /* particles.js variables with default values */
   this.pJS = {
@@ -1077,7 +1078,7 @@ var pJS = function(tag_id, params){
 
         if(pJS.interactivity.el == window){
           var pos_x = e.clientX,
-              pos_y = e.clientY;
+              pos_y = e.pageY - offsetTopTag;
         }
         else{
           var pos_x = e.offsetX || e.clientX,
