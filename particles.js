@@ -7,10 +7,15 @@
 /* v2.0.0
 /* ----------------------------------------------- */
 
+const calculateOffsetTop = el => {
+  const tagName = el.tagName.toLowerCase();
+  return tagName === 'body' ? 0 : (tagName === 'div' ? el.offsetTop : 0) + calculateOffsetTop(el.parentElement);
+}
+
 var pJS = function(tag_id, params){
 
   var canvas_el = document.querySelector('#'+tag_id+' > .particles-js-canvas-el');
-  const offsetTopTag = document.getElementById(tag_id).offsetTop;
+  const offsetTopTag = calculateOffsetTop(document.getElementById(tag_id).parentElement);
 
   /* particles.js variables with default values */
   this.pJS = {
